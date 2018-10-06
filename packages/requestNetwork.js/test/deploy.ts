@@ -13,8 +13,11 @@ const requestEthereumJson = requestArtifacts('private', 'last-RequestEthereum');
 const requestERC20Json = requestArtifacts('private', 'last-RequestErc20-0x345ca3e014aaf5dca488057592ee47305d9b3e10');
 const requestBitcoinNodesValidationJson = requestArtifacts('private', 'last-RequestBitcoinNodesValidation');
 
+const argv = process.argv.slice(2);
+const host = argv[0] || 'localhost';
+const port = argv[1] || '8545';
 
-Web3Single.init('http://localhost:8545', 10000000000);
+Web3Single.init(`http://${host}:${port}`, 10000000000);
 const web3Single = Web3Single.getInstance();
 
 const instanceRequestCore = new web3Single.web3.eth.Contract(requestCoreJson.abi);
